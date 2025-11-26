@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Air Jordan Clássicos</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #000;
+            color: white;
+            text-align: center;
+        }
+
+        h1 {
+            margin-top: 20px;
+            color: #9900ff;
+        }
+
+        .carrossel {
+            display: flex;
+            overflow-x: auto;
+            gap: 20px;
+            padding: 20px;
+            scroll-behavior: smooth;
+            justify-content: center;
+        }
+
+        .item {
+            min-width: 350px;
+            border: 2px solid #333;
+            border-radius: 10px;
+            padding: 15px;
+            background: #111;
+        }
+
+        .item img {
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+            border-radius: 10px;
+            border: 1px solid #444;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .item img:hover {
+            transform: scale(1.05);
+        }
+
+        p.desc {
+            color: #ccc;
+            font-size: 14px;
+            margin: 10px 0;
+        }
+
+        /* BOTÃO DE DOWNLOAD */
+        .btn-download {
+            display: inline-block;
+            background-color: #d10000;
+            color: white;
+            padding: 15px 25px;
+            margin: 20px 0;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 10px;
+            text-decoration: none;
+            transition: background 0.3s ease;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-download:hover {
+            background-color: #8b0000;
+        }
+
+        /* POPUP */
+        #popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #222;
+            color: white;
+            padding: 20px 30px;
+            border-radius: 12px;
+            border: 2px solid #900;
+            display: none;
+            font-size: 18px;
+            z-index: 1000;
+        }
+
+        /* SEÇÃO DO VÍDEO */
+        .video-section {
+            margin: 40px auto;
+            max-width: 800px;
+            padding: 0 20px;
+        }
+
+        .video-section h2 {
+            color: #9900ff;
+            margin-bottom: 20px;
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            height: 0;
+            padding-bottom: 56.25%; /* Proporção 16:9 */
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(153, 0, 255, 0.3);
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Os tênis clássicos do Jordan estão de volta</h1>
+
+    <div class="carrossel">
+        <div class="item">
+            <img src="aj1.jpg" alt="Air Jordan 1" onclick="abrirImagem(this.src)">
+            <p class="desc">Air Jordan 1 – O clássico dos clássicos.</p>
+        </div>
+
+        <div class="item">
+            <img src="aj3.jpg" alt="Air Jordan 3" onclick="abrirImagem(this.src)">
+            <p class="desc">Air Jordan 3 – O famoso modelo com Elephant Print.</p>
+        </div>
+
+        <div class="item">
+            <img src="aj4.jpg" alt="Air Jordan 4" onclick="abrirImagem(this.src)">
+            <p class="desc">Air Jordan 4 – O favorito dos colecionadores.</p>
+        </div>
+    </div>
+
+    <!-- SEÇÃO DO VÍDEO -->
+    <div class="video-section">
+        <h2>História dos Tênis Jordan</h2>
+        <div class="video-container">
+            <iframe 
+                src="https://www.youtube.com/embed/KN-cz7hvrJ4" 
+                title="AIR JORDAN 1-37 Sneakers" 
+                frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                referrerpolicy="strict-origin-when-cross-origin" 
+                allowfullscreen>
+            </iframe>
+        </div>
+    </div>
+
+    <!-- BOTÃO -->
+    <button class="btn-download" onclick="baixarPDF()">
+        📥 Baixar PDF
+    </button>
+
+    <!-- POPUP -->
+    <div id="popup">Download realizado com sucesso!</div>
+
+    <script>
+        function abrirImagem(src) {
+            window.open(src, '_blank');
+        }
+
+        function baixarPDF() {
+            // Criar elemento de download
+            const link = document.createElement("a");
+            link.href = "historio-dos-tenis-de-michael-jordan.pdf";
+            link.download = "historio-dos-tenis-de-michael-jordan.pdf";
+
+            // Força o download
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+
+            // Mostrar popup
+            const popup = document.getElementById("popup");
+            popup.style.display = "block";
+
+            // Ocultar após 2.5s
+            setTimeout(() => {
+                popup.style.display = "none";
+            }, 2500);
+        }
+    </script>
+
+</body>
+</html>
